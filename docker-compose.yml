@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    frontend:
+        build: ./frontend
+        container_name: frontend
+        restart: always
+        ports: 
+          - 80:80
+        volumes:
+          - ./frontend:/ng-app    

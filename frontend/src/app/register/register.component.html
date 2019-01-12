@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="col-md-4 offset-md-4">
+    <section class="form-dark mb-5">
+
+      <div class="card card-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/pricing-table%20(7).jpg');">
+        <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+    
+          <div class="text-center">
+            <h3 class="white-text mb-5 mt-4 font-weight-bold text-uppercase">
+              <strong>Регистрация</strong>
+            </h3>
+          </div>
+    
+          <form [formGroup]="forms" (ngSubmit)="onSubmit()">
+              <div class="md-form">
+                  <input type="text" id="form101" class="form-control" formControlName="name" mdbInputDirective>
+                  <label for="form101">Имя</label>
+              </div>  
+
+            <div class="md-form">
+              <input type="text" id="form100" class="form-control" formControlName="email" mdbInputDirective>
+              <label for="form100">Email</label>
+            </div>
+      
+            <div class="md-form">
+              <input type="password" id="form101" class="form-control" formControlName="password" mdbInputDirective>
+              <label for="form101">Пароль</label>
+            </div>
+      
+            <div class="md-form">
+              <input type="password" id="form101" class="form-control" formControlName="repeat_password" mdbInputDirective>
+              <label for="form101">Повторить пароль</label>
+            </div>
+      
+            <div class="row d-flex align-items-center">
+      
+              <div class="text-center col-md-12 mt-3 mb-2">
+                <button type="submit" mdbBtn color="success" rounded="true" block="true" class="z-depth-1">Зарегистрироваться</button>
+              </div>
+          </div>
+        </form>
+          <div class="col-md-12">
+               <p>Есть аккаунт?Вам сюда <a [routerLink]="['/']">Войти</a></p>   
+          </div>
+        </div>
+      </div>
+    
+    </section>
+  </div>
+</div>
