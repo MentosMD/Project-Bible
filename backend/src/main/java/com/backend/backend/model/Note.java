@@ -21,4 +21,8 @@ public class Note {
     @NotNull
     @Max(value = 255, message = "Max length 255")
     private String description;
+
+    @Column
+    @NotNull
+    private int ProfileId;
 }
