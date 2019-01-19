@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     // Login in
