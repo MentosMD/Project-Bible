@@ -4,6 +4,7 @@ import com.backend.backend.model.User;
 
 public interface UserDAO {
     boolean createUser();
-    boolean deleteUser();
+    boolean deleteUser(int id);
     User login_in();
+    User getUserById(int id);
 }

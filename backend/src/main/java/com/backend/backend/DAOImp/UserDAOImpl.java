@@ -12,12 +12,17 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean deleteUser() {
+    public boolean deleteUser(int id) {
         return false;
     }
 
     @Override
     public User login_in() {
+        return null;
+    }
+
+    @Override
+    public User getUserById(int id) {
         return null;
     }
 }
