@@ -1,0 +1,14 @@
+<div>
+  <app-header></app-header>
+  <div class="row">
+      <div class="container">
+              <div class="md-form">
+                <form #formAddNote (ngSubmit)="onSubmit(formAddNote)" class="col-md-3 offset-md-4">
+                   <input type="text" placeholder="Title" [(ngModel)]="title" class="form-control" />
+                   <textarea class="form-control md-textarea" [(ngModel)]="description" placeholder="Description" mdbInputDirective></textarea>
+                   <button type="submit" mdbBtn color="success" mdbWavesEffect>Добавить</button>
+                </form>
+              </div>
+      </div>
+  </div>
+</div>

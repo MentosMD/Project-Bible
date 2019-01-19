@@ -1,0 +1,22 @@
+<header>
+  <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo">
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link waves-light" [routerLink]="['/profile/note/add']" mdbWavesEffect>Add note</a>
+        </li>
+
+        <li class="nav-item dropdown" dropdown>
+            <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Admin<span class="caret"></span></a>
+            <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">My Profile</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/profile/settings']">Settings</a>
+                <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+            </div>
+        </li>
+
+    </ul>
+    </links>
+  </mdb-navbar>
+</header>

@@ -3,17 +3,24 @@ import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { HeaderComponent } from './core/header/header.component';
+import { AddNoteComponent } from './add-note/add-note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileSettingsComponent,
+    HeaderComponent,
+    AddNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +30,7 @@ import { RegisterComponent } from './register/register.component';
     HttpModule,
     MDBBootstrapModule.forRoot()
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
