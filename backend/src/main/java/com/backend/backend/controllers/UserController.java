@@ -3,7 +3,7 @@ package com.backend.backend.controllers;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/user")
 @CrossOrigin(origins = "*")
 public class UserController {
 

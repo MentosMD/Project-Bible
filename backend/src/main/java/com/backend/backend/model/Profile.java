@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 
 @Entity
-@Table(name = "Profile")
+@Table(name = "profile")
 public class Profile {
     @Id
     @Column

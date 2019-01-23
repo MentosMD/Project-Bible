@@ -10,12 +10,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class User {
     @Id
     @Column
     @GeneratedValue(generator="increment")
-    @GenericGenerator(name="increment", strategy = "increment")
     private int Id;
 
     @Column
