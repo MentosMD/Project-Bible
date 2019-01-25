@@ -9,8 +9,4 @@ import java.util.List;
 
 public interface NoteRepository  extends CrudRepository<Note, Long> {
     List<Note> findAll();
-    Note findById(int id);
-
-    @Query("select Id from Note where Id = :id")
-    boolean deleteById(@Param("id") int id);
 }

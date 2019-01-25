@@ -1,5 +1,7 @@
 package com.backend.backend.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
@@ -10,6 +12,7 @@ public class Note {
     @Id
     @Column
     @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     private int Id;
 
     @Column

@@ -11,13 +11,11 @@ import java.util.List;
 @RequestMapping(path = "/api/profile/note")
 @CrossOrigin(origins = "*")
 public class NoteController {
-    private NoteRepository repos;
 
     @GetMapping("/{id_profile}/all")
     @ResponseBody
-    public List<Note> GetAll(@PathVariable int id_profile) {
-         List<Note> notes = this.repos.findAll();
-         return notes;
+    public boolean GetAll(@PathVariable int id_profile) {
+         return true;
     }
 
     @DeleteMapping("/delete/{id}")
