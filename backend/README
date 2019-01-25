@@ -1,0 +1,3 @@
+Take user and password Mysql
+just run command
+ sudo cat /etc/mysql/debian.cnf
