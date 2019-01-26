@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserServiceService {
+export class UserService {
 
   constructor(private http: HttpClient) { }
 
@@ -14,7 +14,7 @@ export class UserServiceService {
   }
 
   _login(): void {
-    this.http.post('', {});
+    this.http.get('api/login').subscribe();
   }
 
   _logOut(): void {
