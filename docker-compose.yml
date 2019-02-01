@@ -5,7 +5,32 @@ services:
         build: ./frontend
         container_name: frontend
         restart: always
-        ports: 
+        ports:
           - 80:80
         volumes:
-          - ./frontend:/ng-app    
+          - ./frontend:/ng-app
+
+    spring_api:
+       build: ./backend
+       container_name: spring_api
+       restart: always
+       depends_on:
+         - db
+       links:
+         - db
+       ports:
+         - "8080:8080"
+       volumes:
+         - ./backend/target/*jar:/tmp/app.jar
+       environment:
+         DB_HOST: db
+         DB_USER: root
+         DB_PASSWORD: test
+
+    db:
+       image: mysql:5.6
+       container_name: db
+       restart: always
+       environment:
+         MYSQL_ROOT_PASSWORD: test
+         MYSQL_DATABASE: bible
