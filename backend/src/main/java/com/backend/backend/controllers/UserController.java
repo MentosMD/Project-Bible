@@ -5,7 +5,7 @@ import com.backend.backend.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import javax.validation.Valid;
 import java.util.Map;
 
 @RestController
@@ -22,19 +22,16 @@ public class UserController {
     }
 
     // User create
-    @PostMapping("/user/create")
-    public String userCreate(User user, Map<String, Object> model) {
+    @PostMapping("/create")
+    public Object userCreate(@Valid User user) {
         User userFromDb = userRepo.findByEmail(user.getEmail());
 
         if (userFromDb != null){
-            model.put("message", "User exists!");
-            return "registration";
+            return "not exist user";
         }
-
         userRepo.save(user);
 
-        return "redirect:/login";
-
+        return "Registration completed successfully";
     }
 
     // Delete user
