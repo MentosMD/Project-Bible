@@ -6,28 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/user")
 @CrossOrigin(origins = "*")
 public class UserController {
+    private final UserRepository userRepo;
+
     @Autowired
-    private UserRepository userRepo;
+    public UserController(UserRepository userRepo) {
+        this.userRepo = userRepo;
+    }
 
     // Login in
-    @GetMapping("/login")
-    public String login_in() {
-        return "Hello user";
+    @PostMapping("/login")
+    public String login_in(@Valid User user) {
+        User userFromDb = userRepo.findByEmail(user.getEmail());
+
+        if (userFromDb != null) {
+            return userFromDb.getToken();
+        } else
+            return "User not exist";
     }
 
     // User create
     @PostMapping("/create")
-    public Object userCreate(@Valid User user) {
+    public String userCreate(@Valid User user) {
         User userFromDb = userRepo.findByEmail(user.getEmail());
 
         if (userFromDb != null){
-            return "not exist user";
+            return "User exists!";
         }
         userRepo.save(user);
 
@@ -36,7 +44,11 @@ public class UserController {
 
     // Delete user
     @PostMapping("/user/delete/{id}")
-    public boolean userDelete(@PathVariable int id) {
-        return true;
+    public String userDelete(@Valid User user) {
+        User userFromDb = userRepo.findByEmail(user.getEmail());
+
+        if (userFromDb != null) userRepo.delete(userFromDb);
+
+        return "Removal was successful";
     }
 }
