@@ -1,0 +1,6 @@
+Take user and password Mysql
+just run command
+ sudo cat /etc/mysql/debian.cnf
+ Docker image run:
+ 1.docker build -t myorg/myapp .
+ 2.docker run -p 8080:8080 myorg/myapp

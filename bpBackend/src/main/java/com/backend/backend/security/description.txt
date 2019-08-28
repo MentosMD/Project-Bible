@@ -1,0 +1,4 @@
+1. Фильтер принимает все запросы. Если токен не ноль то отдает токен SecurityContextHolder
+2. SecurityContextHolder отдает токен провайдеру TokenAuthenticationProvider.
+Провайдер проверяет валидность токена, привязывает к токену User-а и отдает Security Spring-у (WebSecurityConfig)
+3. В конфиге настраиваем security.
