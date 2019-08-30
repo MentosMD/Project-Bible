@@ -4,6 +4,8 @@ import com.backend.backend.forms.UserForm;
 import com.backend.backend.models.User;
 import com.backend.backend.services.UsersService;
 import com.backend.backend.transfer.UserDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +17,14 @@ import static com.backend.backend.transfer.UserDto.from;
 
 @RestController
 public class UsersController {
+    private static final Logger LOG = LoggerFactory.getLogger(UsersController.class);
+
+    private final UsersService usersService;
+
     @Autowired
-    private UsersService usersService;
+    public UsersController(UsersService usersService) {
+        this.usersService = usersService;
+    }
 
     @GetMapping("/users")
     public List<UserDto> getUsers() {
@@ -28,7 +36,7 @@ public class UsersController {
         return usersService.findOne(userId); // return JSon object user
     }
 
-    @PostMapping("/users")
+    @PostMapping("/registration")
     public ResponseEntity<Object> addUser(@RequestBody UserForm userForm) {
         usersService.signUp(userForm);
         return ResponseEntity.ok().build();

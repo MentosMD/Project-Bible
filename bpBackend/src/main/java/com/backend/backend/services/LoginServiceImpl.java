@@ -19,14 +19,18 @@ import static com.backend.backend.transfer.TokenDto.from;
 @Component
 public class LoginServiceImpl implements LoginService {
 
-    @Autowired
-    private TokensRepository tokensRepository;
+    private final TokensRepository tokensRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    private final UsersRepository usersRepository;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UsersRepository usersRepository;
+    public LoginServiceImpl(TokensRepository tokensRepository, PasswordEncoder passwordEncoder, UsersRepository usersRepository) {
+        this.tokensRepository = tokensRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.usersRepository = usersRepository;
+    }
 
     @Override
     public TokenDto login(LoginForm loginForm) {

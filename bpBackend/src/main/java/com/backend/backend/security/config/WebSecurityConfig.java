@@ -19,11 +19,15 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //
 
-    @Autowired
-    private TokenAuthFilter tokenAuthFilter;
+    private final TokenAuthFilter tokenAuthFilter;
+
+    private final AuthenticationProvider authenticationProvider;
 
     @Autowired
-    private AuthenticationProvider authenticationProvider;
+    public WebSecurityConfig(TokenAuthFilter tokenAuthFilter, AuthenticationProvider authenticationProvider) {
+        this.tokenAuthFilter = tokenAuthFilter;
+        this.authenticationProvider = authenticationProvider;
+    }
 
 
     @Override
@@ -34,7 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationProvider(authenticationProvider)
                 .authorizeRequests()
                 .antMatchers("/users/**").hasAuthority("USER")
-                .antMatchers("/login").permitAll();
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll();
         http.csrf().disable();
     }
 }
