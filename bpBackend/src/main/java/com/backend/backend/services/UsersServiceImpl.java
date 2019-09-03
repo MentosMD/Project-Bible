@@ -1,24 +1,31 @@
 package com.backend.backend.services;
 
+import com.backend.backend.forms.ProfileForm;
 import com.backend.backend.forms.UserForm;
 import com.backend.backend.models.Role;
 import com.backend.backend.models.State;
 import com.backend.backend.models.User;
+import com.backend.backend.models.exeptions.UserNotFoundException;
 import com.backend.backend.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Component
+@Service
 public class UsersServiceImpl implements UsersService {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    private final UsersRepository usersRepository;
 
     @Autowired
-    private UsersRepository usersRepository;
+    public UsersServiceImpl(PasswordEncoder passwordEncoder, UsersRepository usersRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.usersRepository = usersRepository;
+    }
 
     @Override
     public void signUp(UserForm userForm) {
@@ -42,7 +49,27 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public User findOne(Long userId) {
-        return usersRepository.findOne(userId);
+    public User getUser(long userId) throws UserNotFoundException {
+        Optional<User> userCandidate = usersRepository.findById(userId);
+        if (userCandidate.isPresent()) {
+            return userCandidate.get();
+        }
+        throw new UserNotFoundException("User not found for id: " + userId);
+    }
+
+    @Override
+    public User updateUser(ProfileForm profileForm, long userId) throws UserNotFoundException {
+         usersRepository.findById(userId)
+                .map(newUserProfile -> {
+                    newUserProfile.setFirstName(profileForm.getFirstName());
+                    newUserProfile.setLastName(profileForm.getLastName());
+                    newUserProfile.setLogin(profileForm.getLogin());
+                    return usersRepository.save(newUserProfile);
+                });
+        Optional<User> userCandidate = usersRepository.findById(userId);
+        if (userCandidate.isPresent()) {
+            return userCandidate.get();
+        }
+        throw new UserNotFoundException("could not update User");
     }
 }

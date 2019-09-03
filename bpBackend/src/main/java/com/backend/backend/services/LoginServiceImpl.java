@@ -1,22 +1,22 @@
 package com.backend.backend.services;
 
-import com.backend.backend.repositories.TokensRepository;
-import com.backend.backend.repositories.UsersRepository;
 import com.backend.backend.forms.LoginForm;
 import com.backend.backend.models.Token;
 import com.backend.backend.models.User;
+import com.backend.backend.repositories.TokensRepository;
+import com.backend.backend.repositories.UsersRepository;
 import com.backend.backend.transfer.TokenDto;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 import static com.backend.backend.transfer.TokenDto.from;
 
 
-@Component
+@Service
 public class LoginServiceImpl implements LoginService {
 
     private final TokensRepository tokensRepository;

@@ -1,8 +1,10 @@
 package com.backend.backend.services;
 
 
+import com.backend.backend.forms.ProfileForm;
 import com.backend.backend.forms.UserForm;
 import com.backend.backend.models.User;
+import com.backend.backend.models.exeptions.UserNotFoundException;
 
 import java.util.List;
 
@@ -11,5 +13,7 @@ public interface UsersService {
 
     List<User> findAll();
 
-    User findOne(Long userId);
+    User getUser(long userId) throws UserNotFoundException;
+
+    User updateUser(ProfileForm profileForm, long userId) throws UserNotFoundException;
 }
