@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 import static com.backend.backend.transfer.UserDto.from;
 
@@ -69,3 +68,5 @@ public class UserController {
 
     }
 }
+
+// Test synchronization Trello with GitHub.
